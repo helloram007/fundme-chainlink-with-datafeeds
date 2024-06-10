@@ -77,4 +77,12 @@ contract FundMe {
         (bool callSuccess, ) = payable (msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call Failed");
     }
+
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
+    }
 }
